@@ -1,5 +1,6 @@
 from django.conf.urls import include, patterns, url
 from rest_framework import routers
+from .views import IndexView
 from authentications.views import AccountViewSet
 
 router = routers.routersSimpleRouter()
@@ -9,4 +10,5 @@ urlpatterns = patterns(
     '',
 
     url(r'^api/v1/', include(router.urls)),
+    url('^.*$', IndexView.as_view(), name='index'),
 )
