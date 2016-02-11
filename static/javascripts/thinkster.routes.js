@@ -1,7 +1,7 @@
 (function  () {
     "use strict";
     angular
-        .module("thinkster.routes", [])
+        .module("thinkster.routes", ['ngRoute'])
         .config(config);
 
         config.$inject = ["$routeProvider"];
