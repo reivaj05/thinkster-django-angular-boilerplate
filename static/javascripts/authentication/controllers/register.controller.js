@@ -10,6 +10,8 @@
         function RegisterController($location, $scope, Authentication){
             var self = this;
 
+            self.register = register;
+
             function register () {
                 Authentication.register(self.email, self.password, self.username);
             }
