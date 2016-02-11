@@ -5,4 +5,4 @@
             "thinkster.authentication.controllers",
             "thinkster.authentication.services"   
         ]);
-})
+})();
