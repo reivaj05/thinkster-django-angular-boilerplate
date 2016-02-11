@@ -5,9 +5,9 @@
         .module("thinkster.authentication.controllers", [])
         .controller("RegisterController", RegisterController);
 
-        RegisterController.$inject = ["$location", "$scope", "Authentication"];
+        RegisterController.$inject = ["$location", "Authentication"];
 
-        function RegisterController($location, $scope, Authentication){
+        function RegisterController($location, Authentication){
             var self = this;
 
             self.register = register;
