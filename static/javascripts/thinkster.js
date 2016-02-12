@@ -4,7 +4,8 @@
     angular
         .module("thinkster", [
             "thinkster.routes",
-            "thinkster.authentication"
+            "thinkster.authentication",
+            "thinkster.layout"
         ])
         .run(run);
 
