@@ -22,7 +22,11 @@
     */
     var Authentication = {
       register: register,
-      login: login
+      login: login,
+      getAuthenticatedAccount: getAuthenticatedAccount,
+      isAuthenticated: isAuthenticated,
+      setAuthenticatedAccount: setAuthenticatedAccount,
+      unauthenticate: unauthenticate
     };
 
     return Authentication;
@@ -51,6 +55,25 @@
         email: email,
         password: password
       });
+    }
+
+    function getAuthenticatedAccount () {
+      if(!$cookies.authenticatedAccount){
+        return;
+      }
+      return JSON.parse($cookies.authenticatedAccount);
+    }
+
+    function isAuthenticated () {
+      return !!$cookies.authenticatedAccount;
+    }
+
+    function setAuthenticatedAccount (account) {
+      $cookies.authenticatedAccount = JSON.stringify(account);
+    }
+
+    function unauthenticate () {
+      delete $cookies.authenticatedAccount;
     }
   }
 })();
