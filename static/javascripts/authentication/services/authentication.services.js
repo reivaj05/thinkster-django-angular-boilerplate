@@ -23,6 +23,7 @@
     var Authentication = {
       register: register,
       login: login,
+      logout: logout,
       getAuthenticatedAccount: getAuthenticatedAccount,
       isAuthenticated: isAuthenticated,
       setAuthenticatedAccount: setAuthenticatedAccount,
@@ -75,6 +76,20 @@
       function loginErrorHandler (data, status, handler, config) {
         console.error("Login failed");
         console.error(data);
+      }
+    }
+
+    function logout () {
+      return $http.post("/api/v1/auth/logout/")
+        .then(logoutSuccessHandler, logoutErrorHandler);
+
+      function logoutSuccessHandler (data, status, headers, config) {
+        Authentication.unauthenticate();
+        window.location = "/";
+      }
+
+      function logoutErrorHandler (data, status, headers, config) {
+        console.error("logout failed");
       }
     }
 
