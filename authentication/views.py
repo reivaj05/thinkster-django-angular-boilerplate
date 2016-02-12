@@ -9,6 +9,7 @@ from .serializers import AccountSerializer
 
 class LoginView(views.APIView):
     def post(self, request, format=None):
+        message = ''
         data = json.loads(request.body)
         email = data.get('email', None)
         password = data.get('password', None)
@@ -16,21 +17,20 @@ class LoginView(views.APIView):
         account = authenticate(email=email, password=password)
 
         if account:
-            if account.is_active():
+            if account.is_active:
                 login(request, account)
 
                 serialized = AccountSerializer(account)
                 return Response(serialized.data)
             else:
-                return Response({
-                    'status': 'Unauthorized',
-                    'message': 'This account has been disabled'
-                }, status=status.HTTP_401_UNAUTHORIZED)
+                message = 'This account has been disabled'
         else:
-            return Response({
-                'status': 'Unauthorized',
-                'message': 'Username/password combination invalid'
-            }, status=status.HTTP_401_UNAUTHORIZED)
+            message = 'Username/password combination invalid'
+
+        return Response({
+            'status': 'Unauthorized',
+            'message': message
+        }, status=status.HTTP_401_UNAUTHORIZED)
 
 
 class AccountViewSet(viewsets.ModelViewSet):
