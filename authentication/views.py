@@ -1,4 +1,5 @@
-from rest_framework import permissions, viewsets
+from rest_framework import permissions, status, views, viewsets
+from rest_framework.response import Response
 from .models import Account
 from .permissions import IsAccountOwner
 from .serializers import AccountSerializer
@@ -10,7 +11,7 @@ class AccountViewSet(viewsets.ModelViewSet):
     serializer_class = AccountSerializer
 
     def get_permissions(self):
-        if self.resquest.method in permissions.SAFE_METHODS:
+        if self.request.method in permissions.SAFE_METHODS:
             return (permissions.AllowAny(), )
 
         if self.request.method == 'POST':
@@ -19,8 +20,9 @@ class AccountViewSet(viewsets.ModelViewSet):
         return (permissions.IsAuthenticated(), IsAccountOwner(), )
 
     def create(self, request):
+        print request.data
         serializer = self.serializer_class(data=request.data)
-
+        print serializer.is_valid()
         if serializer.is_valid():
             Account.objects.create_user(**serializer.validated_data)
 
