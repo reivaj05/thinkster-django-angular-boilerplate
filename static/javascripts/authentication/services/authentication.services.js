@@ -54,7 +54,18 @@
       return $http.post("/api/v1/auth/login/", {
         email: email,
         password: password
-      });
+      })
+      .then(loginSuccessHandler, loginErrorHandler);
+
+      function loginSuccessHandler (data, status, headers, config) {
+        Authentication.setAuthenticatedAccount(data.data);
+        window.location = "/";
+      }
+
+      function loginErrorHandler (data, status, handler, config) {
+        console.error("Login failed");
+        console.error(data);
+      }
     }
 
     function getAuthenticatedAccount () {
