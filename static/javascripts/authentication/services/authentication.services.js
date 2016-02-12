@@ -47,7 +47,17 @@
         username: username,
         password: password,
         email: email
-      });
+      })
+      .then(registerSuccessHandler, registerErrorHandler);
+
+      function registerSuccessHandler (data, status, headers, config) {
+        Authentication.login(email, password);
+      }
+
+      function registerErrorHandler (data, status, headers, config) {
+        console.error("Login Failed");
+        console.error(data);
+      }
     }
 
     function login (email, password) {
