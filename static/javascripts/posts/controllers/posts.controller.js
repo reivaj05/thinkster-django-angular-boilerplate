@@ -15,9 +15,9 @@
             $scope.$watchCollection(function(){
                 return $scope.posts;
             }, render);
-            $scope.$watch(function(){
+           /* $scope.$watch(function(){
                 return $(window).width();
-            }, render);
+            }, render);*/
         }
 
         function calculateNumberOfColumns () {
