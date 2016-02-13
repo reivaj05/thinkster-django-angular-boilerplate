@@ -12,8 +12,9 @@
             restrict: "E",
             scope: {
                 posts: "="
-            };
-
+            },
+            templateUrl: "/static/templates/posts/posts.html"
+        }
         return directive;
     }
 })();
