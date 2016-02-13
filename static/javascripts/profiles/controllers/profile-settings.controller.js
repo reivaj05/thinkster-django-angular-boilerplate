@@ -45,7 +45,7 @@
         }
 
         function destroy () {
-            Profile.destroy(self.profile.username).then(deleteProfileSuccessHandler, deleteProfileErrorHandler);
+            Profile.destroy(self.profile).then(deleteProfileSuccessHandler, deleteProfileErrorHandler);
 
             function deleteProfileSuccessHandler (data, status, headers, config) {
                 Authentication.unauthenticate();
