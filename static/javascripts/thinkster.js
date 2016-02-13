@@ -6,7 +6,8 @@
             "thinkster.routes",
             "thinkster.authentication",
             "thinkster.layout",
-            "thinkster.posts"
+            "thinkster.posts",
+            "thinkster.utils"
         ])
         .run(run);
 
