@@ -45,10 +45,12 @@
         }
 
         function destroy () {
+            console.error('lalala');
             Profile.destroy(self.profile).then(deleteProfileSuccessHandler, deleteProfileErrorHandler);
 
             function deleteProfileSuccessHandler (data, status, headers, config) {
                 Authentication.unauthenticate();
+
                 window.location = "/";
 
                 Snackbar.show("Your account has been deleted");
