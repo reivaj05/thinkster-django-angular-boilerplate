@@ -1,5 +1,5 @@
 from rest_framework import permissions, viewsets
-from rest_framework.reponse import Response
+from rest_framework.response import Response
 
 from .models import Post
 from .permissions import IsAuthorOfPost

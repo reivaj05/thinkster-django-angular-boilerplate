@@ -1,5 +1,5 @@
 from django.conf.urls import include, patterns, url
-from rest_framework import routers
+from rest_framework_nested import routers
 from .views import IndexView
 from authentication.views import AccountViewSet, LoginView, LogoutView
 from posts.views import AccountPostsViewSet, PostViewSet
