@@ -1,7 +1,7 @@
 (function  () {
     "use strict";
     angular
-        .module("thinkster.posts.controller")
+        .module("thinkster.posts.controllers")
         .controller("PostsController", PostsController);
 
     PostsController.$inject = ["$scope"];
@@ -12,7 +12,7 @@
         init();
 
         function init(){
-            $scope.$watchCollection(funtion(){
+            $scope.$watchCollection(function(){
                 return $scope.posts;
             }, render);
             $scope.$watch(function(){
@@ -60,11 +60,11 @@
                 self.columns = [];
 
                 for (var i = 0; i < calculateNumberOfColumns(); ++i) {
-                    vm.columns.push([]);
+                    self.columns.push([]);
                 }
                 for (var i = 0; i < current.length; ++i) {
-                    var column = approximateShortestColumn();
-                    vm.columns[column].push(current[i]);
+                    var column = getShortestColumn();
+                    self.columns[column].push(current[i]);
                 }
             }
         }
